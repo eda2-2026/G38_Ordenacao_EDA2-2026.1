@@ -17,7 +17,6 @@ class Jogador(BaseModel):
     posicao: str
     pago: bool
 
-# Estado em memoria: para que randomizar e ordenar nao afetem o JSON permanentemente
 dados_em_memoria = carregar_dados()
 
 os.makedirs("static", exist_ok=True)
@@ -32,12 +31,10 @@ def read_index():
 
 @app.get("/api/jogadores")
 def get_jogadores():
-    """Retorna a lista atual em memória."""
     return dados_em_memoria
 
 @app.post("/api/jogadores")
 def add_jogador(jogador: Jogador):
-    """Adiciona um novo jogador na memoria e no JSON."""
     global dados_em_memoria
     
     if not jogador.nome.strip():
@@ -50,7 +47,6 @@ def add_jogador(jogador: Jogador):
     novo_jogador = jogador.dict()
     dados_em_memoria.append(novo_jogador)
     
-    # Salva no arquivo JSON (persistencia permanente)
     json_atual = carregar_dados()
     json_atual.append(novo_jogador)
     salvar_dados(json_atual)
@@ -59,7 +55,6 @@ def add_jogador(jogador: Jogador):
 
 @app.post("/api/jogadores/randomizar")
 def randomizar_jogadores():
-    """Embaralha a lista em memória (NÃO afeta o JSON)."""
     global dados_em_memoria
     random.shuffle(dados_em_memoria)
     return {"message": "Lista randomizada na memória!", "jogadores": dados_em_memoria}
@@ -68,7 +63,6 @@ def randomizar_jogadores():
 def get_jogadores_ordenados(
     criterio: str = Query(..., description="Chave para ordenação (ex: nome, posicao, pago)")
 ):
-    """Ordena a lista usando os 3 algoritmos para comparar tempo (NÃO afeta o JSON permanentemente)."""
     global dados_em_memoria
     
     if not dados_em_memoria:
@@ -77,7 +71,6 @@ def get_jogadores_ordenados(
     if criterio not in dados_em_memoria[0]:
         raise HTTPException(status_code=400, detail=f"Critério '{criterio}' inválido.")
         
-    # Cópias independentes para cada algoritmo (garante que todos ordenem a mesma lista embaralhada)
     lista_bubble = dados_em_memoria[:]
     lista_merge = dados_em_memoria[:]
     lista_quick = dados_em_memoria[:]
@@ -99,31 +92,25 @@ def get_jogadores_ordenados(
     dados_ordenados = quick_sort(lista_quick, criterio)
     tempos['quick'] = (time.perf_counter() - start_time) * 1000
     
-    # Atualiza a memória com o resultado ordenado
     dados_em_memoria = dados_ordenados
     
     return {"jogadores": dados_em_memoria, "tempos": tempos}
 
 @app.get("/api/jogadores/buscar")
 def buscar_jogador(nome: str = Query(..., description="Nome do jogador a buscar")):
-    """Busca um jogador pelo nome na lista em memoria."""
-    # Busca sequencial simples
     resultados = [j for j in dados_em_memoria if nome.lower() in j['nome'].lower()]
     return resultados
 
 @app.put("/api/jogadores/{nome}/pagamento")
 def alterar_pagamento(nome: str = Path(..., description="Nome do jogador")):
-    """Altera o status de pagamento do jogador na memoria e no JSON."""
     global dados_em_memoria
     
     jogador_memoria = next((j for j in dados_em_memoria if j['nome'].lower() == nome.lower()), None)
     if not jogador_memoria:
         raise HTTPException(status_code=404, detail="Jogador não encontrado.")
         
-    # Altera na memoria
     jogador_memoria['pago'] = not jogador_memoria['pago']
     
-    # Altera no JSON
     json_atual = carregar_dados()
     jogador_json = next((j for j in json_atual if j['nome'].lower() == nome.lower()), None)
     if jogador_json:

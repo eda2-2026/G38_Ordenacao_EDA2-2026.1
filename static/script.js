@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const data = await response.json();
                 renderizarTabela(data.jogadores);
-                tempoContainer.textContent = 'A lista em memória foi randomizada! (JSON não foi alterado)';
+                tempoContainer.textContent = 'A lista em memória foi randomizada';
                 
                 const table = document.getElementById('jogadores-table');
                 table.style.opacity = '0.5';
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderizarTabela(data.jogadores);
                 
                 tempoContainer.innerHTML = `
-                    <div style="margin-bottom: 5px;"><strong>Comparação de Tempos (mesma lista aleatória):</strong></div>
+                    <div style="margin-bottom: 5px;"><strong>Comparação de Tempos:</strong></div>
                     <div style="display: flex; gap: 15px; font-weight: normal; color: #333;">
                         <span style="background: #ffebee; padding: 4px 8px; border-radius: 4px; border: 1px solid #ffcdd2;"><strong>Bubble:</strong> ${(data.tempos.bubble / 1000).toFixed(3).replace('.', ',')}s</span>
                         <span style="background: #e3f2fd; padding: 4px 8px; border-radius: 4px; border: 1px solid #bbdefb;"><strong>Merge:</strong> ${(data.tempos.merge / 1000).toFixed(3).replace('.', ',')}s</span>
