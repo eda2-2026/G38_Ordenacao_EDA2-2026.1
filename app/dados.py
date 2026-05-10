@@ -1,7 +1,7 @@
 import json
 import os
 
-ARQUIVO_DADOS = 'jogadores.json'
+ARQUIVO_DADOS = 'data/jogadores.json'
 
 def carregar_dados():
     if not os.path.exists(ARQUIVO_DADOS):

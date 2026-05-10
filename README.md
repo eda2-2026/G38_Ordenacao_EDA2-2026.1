@@ -59,7 +59,7 @@ pip install -r requirements.txt
 
 3. Execute o servidor:
 ```bash
-python -m uvicorn main:app --host 127.0.0.1 --port 8000
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 Em seguida, abra o navegador em **http://127.0.0.1:8000**
 
