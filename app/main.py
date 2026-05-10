@@ -7,8 +7,8 @@ import os
 import time
 import random
 
-from dados import carregar_dados, salvar_dados
-from ordenacao import bubble_sort, merge_sort, quick_sort
+from app.dados import carregar_dados, salvar_dados
+from app.ordenacao import bubble_sort, merge_sort, quick_sort
 
 app = FastAPI(title="Organizador de Pelada API")
 
