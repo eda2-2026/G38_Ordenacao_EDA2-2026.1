@@ -140,11 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 table.style.opacity = '0.5';
                 setTimeout(() => table.style.opacity = '1', 200);
             } else {
-                alert('Erro ao randomizar a lista.');
+                mostrarFeedback('Erro ao randomizar a lista.', 'error');
             }
         } catch (error) {
             console.error('Erro ao randomizar:', error);
-            alert('Erro ao comunicar com o servidor.');
+            mostrarFeedback('Erro ao comunicar com o servidor.', 'error');
         } finally {
             btnRandomizar.disabled = false;
             btnRandomizar.textContent = '🔀 Randomizar';
@@ -179,11 +179,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => table.style.opacity = '1', 200);
             } else {
                 const data = await response.json();
-                alert(`Erro: ${data.detail}`);
+                mostrarFeedback(`Erro: ${data.detail}`, 'error');
             }
         } catch (error) {
             console.error('Erro ao comparar:', error);
-            alert('Erro ao comunicar com o servidor para comparação.');
+            mostrarFeedback('Erro ao comunicar com o servidor para comparação.', 'error');
         } finally {
             btnOrdenar.disabled = false;
             btnOrdenar.textContent = 'Comparar Algoritmos';
