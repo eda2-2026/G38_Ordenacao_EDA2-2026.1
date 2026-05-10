@@ -3,8 +3,9 @@
 Conteúdo da Disciplina: Algoritmos de Ordenação
 
 ## Alunos
-|Matrícula | Aluno |
-| 231039178  |  Pedro Felipe Silva Vargas |
+| Matrícula | Aluno |
+| :---: | :--- |
+| 231039178 | Pedro Felipe Silva Vargas |
 
 ## Sobre
 O projeto é um sistema de gerenciamento de jogadores para peladas semanais de futebol, agora focado na aplicação e comparação de **Algoritmos de Ordenação**. O projeto conta com uma API backend em Python (FastAPI) e uma interface Web interativa (HTML/JS/CSS puro).
