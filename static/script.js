@@ -214,5 +214,15 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarJogadores();
     });
 
+    function mostrarFeedback(mensagem, tipo) {
+        if (!feedback) return;
+        feedback.textContent = mensagem;
+        feedback.className = `feedback ${tipo}`;
+        setTimeout(() => {
+            feedback.textContent = '';
+            feedback.className = 'feedback';
+        }, 4000);
+    }
+
     carregarJogadores();
 });
