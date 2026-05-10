@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador de Pelada - Ordenação</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Organizador de Pelada</h1>
+            <p>Gerenciamento de Jogadores (Algoritmos de Ordenação)</p>
+        </header>
+
+        <main class="dashboard">
+            <section class="panel form-panel">
+                <h2>Adicionar Jogador</h2>
+                <form id="add-jogador-form">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Ex: Neymar">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="posicao">Posição:</label>
+                        <select id="posicao" name="posicao" required>
+                            <option value="Goleiro">Goleiro</option>
+                            <option value="Zagueiro">Zagueiro</option>
+                            <option value="Meio">Meio</option>
+                            <option value="Atacante">Atacante</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label for="pago">
+                            <input type="checkbox" id="pago" name="pago">
+                            Já pagou o campo?
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Adicionar Jogador</button>
+                    <div id="form-feedback" class="feedback"></div>
+                </form>
+            </section>
+
+            <!-- Painel da Direita: Lista e Controles -->
+            <section class="panel list-panel">
+                <div class="list-header">
+                    <h2>Lista de Jogadores</h2>
+                    
+                    <div class="controls">
+                        <div class="control-group">
+                            <label for="criterio">Ordenar por:</label>
+                            <select id="criterio">
+                                <option value="nome">Nome</option>
+                                <option value="posicao">Posição</option>
+                                <option value="pago">Status de Pagamento</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="algoritmo">Algoritmo:</label>
+                            <select id="algoritmo">
+                                <option value="quick">Quick Sort</option>
+                                <option value="merge">Merge Sort</option>
+                                <option value="bubble">Bubble Sort</option>
+                            </select>
+                        </div>
+                        
+                        <button id="btn-ordenar" class="btn-secondary">Ordenar Lista</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="jogadores-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Posição</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jogadores-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
