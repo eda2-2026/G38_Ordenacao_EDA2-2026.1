@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Organizador de Pelada</h1>
+            <h1>⚽ Organizador de Pelada</h1>
             <p>Gerenciamento de Jogadores (Algoritmos de Ordenação)</p>
         </header>
 
@@ -43,6 +43,13 @@
                     <button type="submit" class="btn-primary">Adicionar Jogador</button>
                     <div id="form-feedback" class="feedback"></div>
                 </form>
+
+                <h2 style="margin-top: 2rem;">Buscar Jogador</h2>
+                <div class="form-group" style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="busca-nome" placeholder="Digite o nome...">
+                    <button id="btn-buscar" class="btn-secondary" style="width: auto;">Buscar</button>
+                </div>
+                <button id="btn-limpar-busca" class="btn-secondary" style="display: none;">Limpar Busca</button>
             </section>
 
             <!-- Painel da Direita: Lista e Controles -->
@@ -75,7 +82,7 @@
                 </div>
 
                 <div id="tempo-container" style="margin-top: 15px; font-weight: 600; color: var(--primary-color); font-size: 0.95rem; min-height: 1.5rem;">
-                    <!-- tempo de ordenação-->
+                    <!-- Tempo de ordenação aparecerá aqui -->
                 </div>
 
                 <div class="table-container">
@@ -85,6 +92,7 @@
                                 <th>Nome</th>
                                 <th>Posição</th>
                                 <th>Status</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody id="jogadores-tbody">
