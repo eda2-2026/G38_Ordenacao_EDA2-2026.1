@@ -23,7 +23,9 @@ Além da ordenação, o sistema mantém as funcionalidades de adicionar novos jo
 
 ## Screenshots
 
-*(Você pode adicionar as imagens da nova interface web na pasta `imagens/` e referenciá-las aqui, ex: `![Dashboard](imagens/dashboard.png)`)*
+![Página Principal](imagens/paginaPrincipal.png)
+
+![Página Principal Organizada](imagens/paginaPrincipalOrganizada.png)
 
 ## Como Executar (Fácil)
 
