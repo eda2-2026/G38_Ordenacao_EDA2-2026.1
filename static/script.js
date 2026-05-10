@@ -168,9 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 tempoContainer.innerHTML = `
                     <div style="margin-bottom: 5px;"><strong>Comparação de Tempos (mesma lista aleatória):</strong></div>
                     <div style="display: flex; gap: 15px; font-weight: normal; color: #333;">
-                        <span style="background: #ffebee; padding: 4px 8px; border-radius: 4px; border: 1px solid #ffcdd2;"><strong>Bubble:</strong> ${data.tempos.bubble.toFixed(4)} ms</span>
-                        <span style="background: #e3f2fd; padding: 4px 8px; border-radius: 4px; border: 1px solid #bbdefb;"><strong>Merge:</strong> ${data.tempos.merge.toFixed(4)} ms</span>
-                        <span style="background: #e8f5e9; padding: 4px 8px; border-radius: 4px; border: 1px solid #c8e6c9;"><strong>Quick:</strong> ${data.tempos.quick.toFixed(4)} ms</span>
+                        <span style="background: #ffebee; padding: 4px 8px; border-radius: 4px; border: 1px solid #ffcdd2;"><strong>Bubble:</strong> ${(data.tempos.bubble / 1000).toFixed(2)}s</span>
+                        <span style="background: #e3f2fd; padding: 4px 8px; border-radius: 4px; border: 1px solid #bbdefb;"><strong>Merge:</strong> ${(data.tempos.merge / 1000).toFixed(2)}s</span>
+                        <span style="background: #e8f5e9; padding: 4px 8px; border-radius: 4px; border: 1px solid #c8e6c9;"><strong>Quick:</strong> ${(data.tempos.quick / 1000).toFixed(2)}s</span>
                     </div>
                 `;
                 
