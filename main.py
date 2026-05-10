@@ -40,8 +40,11 @@ def add_jogador(jogador: Jogador):
     """Adiciona um novo jogador na memoria e no JSON."""
     global dados_em_memoria
     
+    if not jogador.nome.strip():
+        raise HTTPException(status_code=400, detail="Adicione um nome!")
+    
     for d in dados_em_memoria:
-        if d['nome'].lower() == jogador.nome.lower():
+        if d['nome'].lower().strip() == jogador.nome.lower().strip():
             raise HTTPException(status_code=400, detail="Jogador já existe com este nome.")
             
     novo_jogador = jogador.dict()

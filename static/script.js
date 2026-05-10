@@ -86,6 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const posicao = document.getElementById('posicao').value;
         const pago = document.getElementById('pago').checked;
 
+        if (!nome) {
+            alert("Adicione um nome!");
+            mostrarFeedback("Adicione um nome!", 'error');
+            return;
+        }
+
         try {
             const response = await fetch('/api/jogadores', {
                 method: 'POST',
@@ -99,14 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 mostrarFeedback(data.message, 'success');
+                alert(data.message);
                 form.reset();
                 carregarJogadores(); 
             } else {
                 mostrarFeedback(data.detail, 'error');
+                alert(data.detail);
             }
         } catch (error) {
             console.error('Erro ao adicionar jogador:', error);
             mostrarFeedback('Erro de conexão com o servidor.', 'error');
+            alert('Erro de conexão com o servidor.');
         }
     });
 
