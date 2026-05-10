@@ -1,180 +1,5 @@
 [
   {
-    "nome": "Pedro",
-    "posicao": "Atacante",
-    "pago": true
-  },
-  {
-    "nome": "Joao",
-    "posicao": "Goleiro",
-    "pago": false
-  },
-  {
-    "nome": "Lucas",
-    "posicao": "Meio",
-    "pago": true
-  },
-  {
-    "nome": "Marcos",
-    "posicao": "Zagueiro",
-    "pago": false
-  },
-  {
-    "nome": "Carlos",
-    "posicao": "Meio",
-    "pago": true
-  },
-  {
-    "nome": "Rafael",
-    "posicao": "Atacante",
-    "pago": true
-  },
-  {
-    "nome": "Fernando",
-    "posicao": "Zagueiro",
-    "pago": true
-  },
-  {
-    "nome": "Diego",
-    "posicao": "Meio",
-    "pago": false
-  },
-  {
-    "nome": "Tiago",
-    "posicao": "Goleiro",
-    "pago": true
-  },
-  {
-    "nome": "Bruno",
-    "posicao": "Atacante",
-    "pago": false
-  },
-  {
-    "nome": "Felipe",
-    "posicao": "Zagueiro",
-    "pago": true
-  },
-  {
-    "nome": "Gabriel",
-    "posicao": "Meio",
-    "pago": true
-  },
-  {
-    "nome": "Mateus",
-    "posicao": "Atacante",
-    "pago": false
-  },
-  {
-    "nome": "Eduardo",
-    "posicao": "Zagueiro",
-    "pago": true
-  },
-  {
-    "nome": "Andre",
-    "posicao": "Meio",
-    "pago": true
-  },
-  {
-    "nome": "Leonardo",
-    "posicao": "Atacante",
-    "pago": false
-  },
-  {
-    "nome": "Victor",
-    "posicao": "Goleiro",
-    "pago": true
-  },
-  {
-    "nome": "Daniel",
-    "posicao": "Meio",
-    "pago": true
-  },
-  {
-    "nome": "Rodrigo",
-    "posicao": "Zagueiro",
-    "pago": false
-  },
-  {
-    "nome": "Alexandre",
-    "posicao": "Atacante",
-    "pago": true
-  },
-  {
-    "nome": "Guilherme",
-    "posicao": "Meio",
-    "pago": true
-  },
-  {
-    "nome": "Marcelo",
-    "posicao": "Zagueiro",
-    "pago": false
-  },
-  {
-    "nome": "Gustavo",
-    "posicao": "Atacante",
-    "pago": true
-  },
-  {
-    "nome": "Thiago",
-    "posicao": "Meio",
-    "pago": true
-  },
-  {
-    "nome": "Arthur",
-    "posicao": "Zagueiro",
-    "pago": true
-  },
-  {
-    "nome": "Henrique",
-    "posicao": "Atacante",
-    "pago": false
-  },
-  {
-    "nome": "Ricardo",
-    "posicao": "Meio",
-    "pago": true
-  },
-  {
-    "nome": "Roberto",
-    "posicao": "Zagueiro",
-    "pago": false
-  },
-  {
-    "nome": "Julio",
-    "posicao": "Goleiro",
-    "pago": true
-  },
-  {
-    "nome": "Igor",
-    "posicao": "Atacante",
-    "pago": true
-  },
-  {
-    "nome": "Neymar",
-    "posicao": "Goleiro",
-    "pago": true
-  },
-  {
-    "nome": "a",
-    "posicao": "Atacante",
-    "pago": true
-  },
-  {
-    "nome": "aa",
-    "posicao": "Atacante",
-    "pago": true
-  },
-  {
-    "nome": "Luva",
-    "posicao": "Goleiro",
-    "pago": false
-  },
-  {
-    "nome": "Luva Alberto",
-    "posicao": "Goleiro",
-    "pago": true
-  },
-  {
     "nome": "Diego Oliveira Lima",
     "posicao": "Atacante",
     "pago": false
@@ -3852,7 +3677,7 @@
   {
     "nome": "Alexandre Almeida Barros",
     "posicao": "Meio",
-    "pago": false
+    "pago": true
   },
   {
     "nome": "Pedro Ferreira Martins",
@@ -5842,7 +5667,7 @@
   {
     "nome": "Alexandre Alves Barbosa",
     "posicao": "Atacante",
-    "pago": false
+    "pago": true
   },
   {
     "nome": "Diego Lopes Silva",
@@ -7172,7 +6997,7 @@
   {
     "nome": "Alexandre Almeida Oliveira",
     "posicao": "Atacante",
-    "pago": false
+    "pago": true
   },
   {
     "nome": "Thiago Lopes Almeida",
