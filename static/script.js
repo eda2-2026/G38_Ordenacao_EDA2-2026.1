@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        const btnSubmit = form.querySelector('button[type="submit"]');
         const nome = document.getElementById('nome').value.trim();
         const posicao = document.getElementById('posicao').value;
         const pago = document.getElementById('pago').checked;
@@ -91,6 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
             mostrarFeedback("Adicione um nome!", 'error');
             return;
         }
+
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = 'Adicionando...';
 
         try {
             const response = await fetch('/api/jogadores', {
@@ -116,6 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Erro ao adicionar jogador:', error);
             mostrarFeedback('Erro de conexão com o servidor.', 'error');
             alert('Erro de conexão com o servidor.');
+        } finally {
+            btnSubmit.disabled = false;
+            btnSubmit.textContent = 'Adicionar Jogador';
         }
     });
 

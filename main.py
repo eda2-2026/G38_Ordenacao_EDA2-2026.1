@@ -51,9 +51,6 @@ def add_jogador(jogador: Jogador):
     dados_em_memoria.append(novo_jogador)
     
     # Salva no arquivo JSON (persistencia permanente)
-    salvar_dados(carregar_dados() + [novo_jogador]) 
-    # Melhor reconstruir do JSON para garantir consistência ou só salvar a lista atual
-    # Como a lista atual pode estar randomizada, vamos apenas adicionar ao JSON original.
     json_atual = carregar_dados()
     json_atual.append(novo_jogador)
     salvar_dados(json_atual)
