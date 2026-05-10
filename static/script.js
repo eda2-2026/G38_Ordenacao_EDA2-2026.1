@@ -109,17 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 mostrarFeedback(data.message, 'success');
-                alert(data.message);
                 form.reset();
                 carregarJogadores(); 
             } else {
                 mostrarFeedback(data.detail, 'error');
-                alert(data.detail);
             }
         } catch (error) {
             console.error('Erro ao adicionar jogador:', error);
             mostrarFeedback('Erro de conexão com o servidor.', 'error');
-            alert('Erro de conexão com o servidor.');
         } finally {
             btnSubmit.disabled = false;
             btnSubmit.textContent = 'Adicionar Jogador';
