@@ -66,33 +66,43 @@ def randomizar_jogadores():
 
 @app.get("/api/jogadores/ordenar")
 def get_jogadores_ordenados(
-    criterio: str = Query(..., description="Chave para ordenação (ex: nome, posicao, pago)"),
-    algoritmo: str = Query(..., description="Algoritmo de ordenação (bubble, merge, quick)")
+    criterio: str = Query(..., description="Chave para ordenação (ex: nome, posicao, pago)")
 ):
-    """Ordena a lista em memória e retorna o tempo (NÃO afeta o JSON)."""
+    """Ordena a lista usando os 3 algoritmos para comparar tempo (NÃO afeta o JSON permanentemente)."""
     global dados_em_memoria
     
     if not dados_em_memoria:
-        return {"jogadores": [], "tempo_ms": 0.0}
+        return {"jogadores": [], "tempos": {"bubble": 0.0, "merge": 0.0, "quick": 0.0}}
         
     if criterio not in dados_em_memoria[0]:
         raise HTTPException(status_code=400, detail=f"Critério '{criterio}' inválido.")
         
+    # Cópias independentes para cada algoritmo (garante que todos ordenem a mesma lista embaralhada)
+    lista_bubble = dados_em_memoria[:]
+    lista_merge = dados_em_memoria[:]
+    lista_quick = dados_em_memoria[:]
+    
+    tempos = {}
+    
+    # 1. Bubble Sort
     start_time = time.perf_counter()
+    bubble_sort(lista_bubble, criterio)
+    tempos['bubble'] = (time.perf_counter() - start_time) * 1000
     
-    if algoritmo == 'bubble':
-        dados_em_memoria = bubble_sort(dados_em_memoria, criterio)
-    elif algoritmo == 'merge':
-        dados_em_memoria = merge_sort(dados_em_memoria, criterio)
-    elif algoritmo == 'quick':
-        dados_em_memoria = quick_sort(dados_em_memoria, criterio)
-    else:
-        raise HTTPException(status_code=400, detail=f"Algoritmo '{algoritmo}' não suportado.")
-        
-    end_time = time.perf_counter()
-    tempo_ms = (end_time - start_time) * 1000
+    # 2. Merge Sort
+    start_time = time.perf_counter()
+    merge_sort(lista_merge, criterio)
+    tempos['merge'] = (time.perf_counter() - start_time) * 1000
     
-    return {"jogadores": dados_em_memoria, "tempo_ms": tempo_ms}
+    # 3. Quick Sort
+    start_time = time.perf_counter()
+    dados_ordenados = quick_sort(lista_quick, criterio)
+    tempos['quick'] = (time.perf_counter() - start_time) * 1000
+    
+    # Atualiza a memória com o resultado ordenado
+    dados_em_memoria = dados_ordenados
+    
+    return {"jogadores": dados_em_memoria, "tempos": tempos}
 
 @app.get("/api/jogadores/buscar")
 def buscar_jogador(nome: str = Query(..., description="Nome do jogador a buscar")):

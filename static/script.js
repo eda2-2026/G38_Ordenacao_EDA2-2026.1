@@ -138,22 +138,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ordenar jogadores
+    // comparar algoritmos de ordenação
     btnOrdenar.addEventListener('click', async () => {
         const criterio = document.getElementById('criterio').value;
-        const algoritmo = document.getElementById('algoritmo').value;
 
         btnOrdenar.disabled = true;
-        btnOrdenar.textContent = 'Ordenando...';
+        btnOrdenar.textContent = 'Calculando...';
 
         try {
-            const response = await fetch(`/api/jogadores/ordenar?criterio=${criterio}&algoritmo=${algoritmo}`);
+            const response = await fetch(`/api/jogadores/ordenar?criterio=${criterio}`);
             
             if (response.ok) {
                 const data = await response.json(); 
                 renderizarTabela(data.jogadores);
                 
-                tempoContainer.textContent = `⏱️ Tempo de ordenação (${algoritmo}): ${data.tempo_ms.toFixed(4)} ms`;
+                tempoContainer.innerHTML = `
+                    <div style="margin-bottom: 5px;"><strong>Comparação de Tempos (mesma lista aleatória):</strong></div>
+                    <div style="display: flex; gap: 15px; font-weight: normal; color: #333;">
+                        <span style="background: #ffebee; padding: 4px 8px; border-radius: 4px; border: 1px solid #ffcdd2;"><strong>Bubble:</strong> ${data.tempos.bubble.toFixed(4)} ms</span>
+                        <span style="background: #e3f2fd; padding: 4px 8px; border-radius: 4px; border: 1px solid #bbdefb;"><strong>Merge:</strong> ${data.tempos.merge.toFixed(4)} ms</span>
+                        <span style="background: #e8f5e9; padding: 4px 8px; border-radius: 4px; border: 1px solid #c8e6c9;"><strong>Quick:</strong> ${data.tempos.quick.toFixed(4)} ms</span>
+                    </div>
+                `;
                 
                 const table = document.getElementById('jogadores-table');
                 table.style.opacity = '0.5';
@@ -163,11 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`Erro: ${data.detail}`);
             }
         } catch (error) {
-            console.error('Erro ao ordenar:', error);
-            alert('Erro ao comunicar com o servidor para ordenação.');
+            console.error('Erro ao comparar:', error);
+            alert('Erro ao comunicar com o servidor para comparação.');
         } finally {
             btnOrdenar.disabled = false;
-            btnOrdenar.textContent = 'Ordenar Lista';
+            btnOrdenar.textContent = 'Comparar Algoritmos';
         }
     });
 
