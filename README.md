@@ -25,35 +25,43 @@ Além da ordenação, o sistema mantém as funcionalidades de adicionar novos jo
 
 *(Você pode adicionar as imagens da nova interface web na pasta `imagens/` e referenciá-las aqui, ex: `![Dashboard](imagens/dashboard.png)`)*
 
-## Instalação
-Linguagem: Python 3
-Framework: FastAPI
+## Como Executar (Fácil)
 
-Pré-requisitos:
-- Python 3.6 ou superior instalado
+Para facilitar a correção do trabalho, criamos scripts automatizados que configuram tudo e abrem o servidor sozinhos. Você só precisa ter o **Python 3** instalado.
 
-Crie e ative um ambiente virtual (recomendado):
+### No Windows:
+Basta dar um duplo clique no arquivo **`run.bat`**.
+*(Ele criará o ambiente virtual, instalará as bibliotecas e abrirá o navegador automaticamente).*
+
+### No Linux / Mac:
+Abra o terminal na pasta do projeto e execute:
+```bash
+chmod +x run.sh
+./run.sh
+```
+
+---
+
+## Execução Manual (Alternativa)
+Se preferir rodar manualmente no terminal:
+
+1. Crie e ative um ambiente virtual:
 ```bash
 python -m venv venv
 source venv/bin/activate  # No Linux/Mac
 # ou no Windows: venv\Scripts\activate
 ```
 
-Instale as dependências:
+2. Instale as dependências:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Uso
-
-Execute o servidor da aplicação com:
-
+3. Execute o servidor:
 ```bash
 python -m uvicorn main:app --host 127.0.0.1 --port 8000
 ```
-
-Em seguida, abra o seu navegador e acesse:
-**http://127.0.0.1:8000**
+Em seguida, abra o navegador em **http://127.0.0.1:8000**
 
 A interface web apresentará opções para:
 1. **Adicionar Jogador**
