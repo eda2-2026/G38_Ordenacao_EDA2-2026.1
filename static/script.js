@@ -2,13 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbody = document.getElementById('jogadores-tbody');
     const form = document.getElementById('add-jogador-form');
     const btnOrdenar = document.getElementById('btn-ordenar');
+    const btnRandomizar = document.getElementById('btn-randomizar');
     const feedback = document.getElementById('form-feedback');
+    const tempoContainer = document.getElementById('tempo-container');
 
     async function carregarJogadores() {
         try {
             const response = await fetch('/api/jogadores');
             const data = await response.json();
             renderizarTabela(data);
+            tempoContainer.textContent = '';
         } catch (error) {
             console.error('Erro ao carregar jogadores:', error);
             mostrarFeedback('Erro ao carregar lista de jogadores.', 'error');
@@ -70,6 +73,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // randomizar lista
+    btnRandomizar.addEventListener('click', async () => {
+        btnRandomizar.disabled = true;
+        btnRandomizar.textContent = 'Randomizando...';
+
+        try {
+            const response = await fetch('/api/jogadores/randomizar', { method: 'POST' });
+            
+            if (response.ok) {
+                const data = await response.json();
+                renderizarTabela(data.jogadores);
+                tempoContainer.textContent = 'A lista foi randomizada!';
+                
+                const table = document.getElementById('jogadores-table');
+                table.style.opacity = '0.5';
+                setTimeout(() => table.style.opacity = '1', 200);
+            } else {
+                alert('Erro ao randomizar a lista.');
+            }
+        } catch (error) {
+            console.error('Erro ao randomizar:', error);
+            alert('Erro ao comunicar com o servidor.');
+        } finally {
+            btnRandomizar.disabled = false;
+            btnRandomizar.textContent = '🔀 Randomizar';
+        }
+    });
+
     // ordenar jogadores
     btnOrdenar.addEventListener('click', async () => {
         const criterio = document.getElementById('criterio').value;
@@ -82,10 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`/api/jogadores/ordenar?criterio=${criterio}&algoritmo=${algoritmo}`);
             
             if (response.ok) {
-                const data = await response.json();
-                renderizarTabela(data);
+                const data = await response.json(); // { jogadores: [...], tempo_ms: ... }
+                renderizarTabela(data.jogadores);
                 
-                // Feedback visual sutil de sucesso na ordenação
+                // tempo de ordenação
+                tempoContainer.textContent = `Tempo de ordenação (${algoritmo}): ${data.tempo_ms.toFixed(4)} ms`;
+                
                 const table = document.getElementById('jogadores-table');
                 table.style.opacity = '0.5';
                 setTimeout(() => table.style.opacity = '1', 200);

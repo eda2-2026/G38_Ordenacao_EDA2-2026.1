@@ -4,6 +4,8 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import uvicorn
 import os
+import time
+import random
 
 from dados import carregar_dados, salvar_dados
 from ordenacao import bubble_sort, merge_sort, quick_sort
@@ -45,6 +47,13 @@ def add_jogador(jogador: Jogador):
     
     return {"message": "Jogador adicionado com sucesso!", "jogador": novo_jogador}
 
+@app.post("/api/jogadores/randomizar")
+def randomizar_jogadores():
+    dados = carregar_dados()
+    random.shuffle(dados)
+    salvar_dados(dados)
+    return {"message": "Lista randomizada com sucesso!", "jogadores": dados}
+
 @app.get("/api/jogadores/ordenar")
 def get_jogadores_ordenados(
     criterio: str = Query(..., description="Chave para ordenação (ex: nome, posicao, pago)"),
@@ -53,19 +62,26 @@ def get_jogadores_ordenados(
     dados = carregar_dados()
     
     if not dados:
-        return []
+        return {"jogadores": [], "tempo_ms": 0.0}
         
     if criterio not in dados[0]:
         raise HTTPException(status_code=400, detail=f"Critério '{criterio}' inválido.")
         
+    start_time = time.perf_counter()
+    
     if algoritmo == 'bubble':
-        return bubble_sort(dados, criterio)
+        resultado = bubble_sort(dados, criterio)
     elif algoritmo == 'merge':
-        return merge_sort(dados, criterio)
+        resultado = merge_sort(dados, criterio)
     elif algoritmo == 'quick':
-        return quick_sort(dados, criterio)
+        resultado = quick_sort(dados, criterio)
     else:
         raise HTTPException(status_code=400, detail=f"Algoritmo '{algoritmo}' não suportado.")
+        
+    end_time = time.perf_counter()
+    tempo_ms = (end_time - start_time) * 1000
+    
+    return {"jogadores": resultado, "tempo_ms": tempo_ms}
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
